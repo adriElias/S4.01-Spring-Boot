@@ -1,6 +1,5 @@
 package cat.itacademy.s04.t01.userapi.level2.controller;
 
-import cat.itacademy.s04.t01.userapi.level1.Status;
 import cat.itacademy.s04.t01.userapi.level2.dto.CreateUserRequest;
 import cat.itacademy.s04.t01.userapi.level2.model.User;
 import cat.itacademy.s04.t01.userapi.level2.exceptions.UserNotFoundException;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 @RestController
