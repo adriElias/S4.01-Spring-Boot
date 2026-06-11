@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 @RestController
@@ -15,8 +16,14 @@ public class UserController {
     public List<User> users = new ArrayList<>();
 
     @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return users;
+    public List<User> getAllUsers(@RequestParam(required = false) String name) {
+        if(name == null || name.isBlank()){
+            return users;
+        }
+
+        return users.stream()
+                .filter(user -> user.getName().toLowerCase().contains(name.toLowerCase()))
+                .toList();
     }
 
     @PostMapping("/users")
