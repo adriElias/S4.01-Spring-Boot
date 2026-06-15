@@ -249,7 +249,7 @@ curl -X GET http://localhost:9000/users/invalid-id
      │ userService.createUser(dto)
      ▼
 ┌──────────────────────────────────┐
-│ UserServiceImpl (Level 2)         │
+│ UserServiceImpl (Level 2)        │
 │ - Generate UUID                  │
 │ - Create User object             │
 │ - Call repository                │
@@ -280,7 +280,7 @@ HTTP REQUEST (GET, POST, etc.)
 │  ├─ @RestController                    │
 │  ├─ @GetMapping, @PostMapping          │
 │  └─ Responsibility: HTTP Protocol      │
-└────────┬─────────────────────────────┘
+└────────┬───────────────────────────────┘
          │ injection: UserService
          ▼
 ┌────────────────────────────────────────┐
@@ -290,7 +290,7 @@ HTTP REQUEST (GET, POST, etc.)
 │  ├─ Business logic                     │
 │  ├─ Validations                        │
 │  └─ Responsibility: Business rules     │
-└────────┬─────────────────────────────┘
+└────────┬───────────────────────────────┘
          │ injection: UserRepository
          ▼
 ┌────────────────────────────────────────┐
@@ -299,7 +299,7 @@ HTTP REQUEST (GET, POST, etc.)
 │  ├─ InMemoryUserRepository             │
 │  ├─ @Repository                        │
 │  └─ Responsibility: Data access        │
-└────────┬─────────────────────────────┘
+└────────┬───────────────────────────────┘
          │
          ▼
 ┌────────────────────────────────────────┐
@@ -618,14 +618,6 @@ Educational purposes - Barcelona Activa
 
 ---
 
-## 👨‍💻 Author
-
-**Creation Date**: June 2026
-**Institution**: IT Academy - Barcelona Activa  
-**Level**: Apprentice / Junior Developer
-
----
-
 ## ❓ Frequently Asked Questions (FAQ)
 
 ### Q: How do I change the API port?
@@ -723,7 +715,7 @@ Contributions are welcome! For major changes:
 6. Open a Pull Request
 
 ---
-
+## 👨‍💻 
 **Last Update**: June 15, 2026  
 **Version**: 1.0.0-SNAPSHOT  
 **Status**: ✅ Completed and Tested (Production Ready - Educational)  
