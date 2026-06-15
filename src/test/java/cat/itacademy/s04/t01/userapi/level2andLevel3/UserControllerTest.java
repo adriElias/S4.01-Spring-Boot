@@ -42,15 +42,15 @@ public class UserControllerTest {
     void createUser_returnsUserWithId() throws Exception{
         // Simula POST /users amb JSON
         // Espera que torni el mateix usuari amb UUID no nul
-        CreateUserRequest json = new CreateUserRequest("Ada Lovelace", "ada@example.com");
+        CreateUserRequest json = new CreateUserRequest("Camila Fraire", "camila@example.com");
         mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(json)))
 
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.name").value("Ada Lovelace"))
-                .andExpect(jsonPath("$.email").value("ada@example.com"));
+                .andExpect(jsonPath("$.name").value("Camila Fraire"))
+                .andExpect(jsonPath("$.email").value("camila@example.com"));
 
     }
 
@@ -58,7 +58,7 @@ public class UserControllerTest {
     void getUserById_returnsCorrectUser() throws Exception{
         // Primer afegeix un usuari amb POST
         // Després GET /users/{id} i comprova que torni aquest usuari
-        CreateUserRequest json = new CreateUserRequest("Ada Lovelace", "ada@example.com");
+        CreateUserRequest json = new CreateUserRequest("Raquel", "raquel@example.com");
 
         String response = mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -72,8 +72,8 @@ public class UserControllerTest {
         User createdUser = objectMapper.readValue(response, User.class);
         mockMvc.perform(get("/users/" + createdUser.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Ada Lovelace"))
-                .andExpect(jsonPath("$.email").value("ada@example.com"));
+                .andExpect(jsonPath("$.name").value("Raquel"))
+                .andExpect(jsonPath("$.email").value("raquel@example.com"));
 
     }
 
