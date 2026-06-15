@@ -5,11 +5,19 @@ meta {
 }
 
 post {
-  url: 
-  body: none
+  url: http://localhost:9000/users
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "name": "Ada Lovelace",
+    "email": "ada@example.com"
+  }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
