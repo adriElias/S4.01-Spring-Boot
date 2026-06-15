@@ -9,17 +9,27 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<String> handleEmailAlreadyExists(EmailAlreadyExistsException ex) {
+    public ResponseEntity<ErrorResponse> handleEmailAlreadyExists(EmailAlreadyExistsException ex) {
+        ErrorResponse error = new ErrorResponse(
+                ex.getMessage(),
+                HttpStatus.CONFLICT.value(),
+                "CONFLICT"
+        );
         return ResponseEntity
-                .status(HttpStatus.CONFLICT) // 409
-                .body(ex.getMessage());
+                .status(HttpStatus.CONFLICT)
+                .body(error);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
+    public ResponseEntity<ErrorResponse> handleUserNotFound(UserNotFoundException ex) {
+        ErrorResponse error = new ErrorResponse(
+                ex.getMessage(),
+                HttpStatus.NOT_FOUND.value(),
+                "NOT_FOUND"
+        );
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND) // 404
-                .body(ex.getMessage());
+                .status(HttpStatus.NOT_FOUND)
+                .body(error);
     }
 
 }
