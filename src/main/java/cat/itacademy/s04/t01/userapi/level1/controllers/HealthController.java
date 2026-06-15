@@ -1,12 +1,13 @@
 package cat.itacademy.s04.t01.userapi.level1.controllers;
 
+import cat.itacademy.s04.t01.userapi.level1.Status;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HealthController {
     @GetMapping("/health")
-    public String healthMessage(){
-        return "OK";
+    public Status healthMessage(){
+        return new Status("OK");
     }
 }
