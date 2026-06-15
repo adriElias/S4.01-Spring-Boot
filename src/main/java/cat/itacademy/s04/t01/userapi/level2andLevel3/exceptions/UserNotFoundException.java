@@ -1,4 +1,4 @@
-package cat.itacademy.s04.t01.userapi.level2.exceptions;
+package cat.itacademy.s04.t01.userapi.level2andLevel3.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

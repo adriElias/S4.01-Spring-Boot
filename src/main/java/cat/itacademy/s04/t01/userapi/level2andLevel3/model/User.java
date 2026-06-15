@@ -1,4 +1,4 @@
-package cat.itacademy.s04.t01.userapi.level2.model;
+package cat.itacademy.s04.t01.userapi.level2andLevel3.model;
 
 import java.util.UUID;
 

@@ -1,8 +1,8 @@
-package cat.itacademy.s04.t01.userapi.level2.controller;
+package cat.itacademy.s04.t01.userapi.level2andLevel3.controller;
 
-import cat.itacademy.s04.t01.userapi.level2.dto.CreateUserRequest;
-import cat.itacademy.s04.t01.userapi.level2.model.User;
-import cat.itacademy.s04.t01.userapi.level2.exceptions.UserNotFoundException;
+import cat.itacademy.s04.t01.userapi.level2andLevel3.dto.CreateUserRequest;
+import cat.itacademy.s04.t01.userapi.level2andLevel3.model.User;
+import cat.itacademy.s04.t01.userapi.level2andLevel3.exceptions.UserNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
-package cat.itacademy.s04.t01.userapi.level2;
+package cat.itacademy.s04.t01.userapi.level2andLevel3;
 
-import cat.itacademy.s04.t01.userapi.level2.dto.CreateUserRequest;
-import cat.itacademy.s04.t01.userapi.level2.model.User;
+import cat.itacademy.s04.t01.userapi.level2andLevel3.dto.CreateUserRequest;
+import cat.itacademy.s04.t01.userapi.level2andLevel3.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

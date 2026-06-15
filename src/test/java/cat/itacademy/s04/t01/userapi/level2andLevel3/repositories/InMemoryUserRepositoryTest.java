@@ -1,11 +1,9 @@
-package cat.itacademy.s04.t01.userapi.level2.repositories;
+package cat.itacademy.s04.t01.userapi.level2andLevel3.repositories;
 
-import cat.itacademy.s04.t01.userapi.level2.model.User;
+import cat.itacademy.s04.t01.userapi.level2andLevel3.model.User;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
