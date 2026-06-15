@@ -367,73 +367,146 @@ HTTP REQUEST (GET, POST, etc.)
 
 ```
 userapi/
+│
 ├── src/
 │   ├── main/
-│   │   ├── java/
-│   │   │   └── cat/itacademy/s04/t01/userapi/
-│   │   │       ├── UserapiApplication.java              (Spring Boot entry point)
+│   │   ├── java/cat/itacademy/s04/t01/userapi/
+│   │   │   ├── UserapiApplication.java                 (Spring Boot @SpringBootApplication entry point)
+│   │   │   │
+│   │   │   ├── level1/                                 (📌 LEVEL 1: Health Check API)
+│   │   │   │   ├── Status.java                         (Response DTO: {"status":"OK"})
+│   │   │   │   └── controllers/
+│   │   │   │       └── HealthController.java           (@RestController - GET /health)
+│   │   │   │
+│   │   │   └── level2andLevel3/                        (📌 LEVEL 2 & 3: User Management with Service Layer)
+│   │   │       ├── controller/
+│   │   │       │   └── UserController.java             (@RestController - /users endpoints)
 │   │   │       │
-│   │   │       ├── level1/                              (LEVEL 1: Health Check)
-│   │   │       │   ├── Status.java                      (Response DTO)
-│   │   │       │   └── controllers/
-│   │   │       │       └── HealthController.java        (Endpoint /health)
+│   │   │       ├── service/
+│   │   │       │   ├── UserService.java                (Service interface - business logic contract)
+│   │   │       │   └── UserServiceImpl.java             (@Service - business logic implementation)
 │   │   │       │
-│   │   │       └── level2 & level3/                     (LEVEL 2 & 3: User CRUD with Service Layer)
-│   │   │           ├── controller/
-│   │   │           │   └── UserController.java          (Endpoints /users - now uses Service)
-│   │   │           ├── service/
-│   │   │           │   ├── UserService.java             (Service interface - Level 3)
-│   │   │           │   └── UserServiceImpl.java          (Service implementation - Level 3)
-│   │   │           ├── model/
-│   │   │           │   └── User.java                    (User entity)
-│   │   │           ├── dto/
-│   │   │           │   └── CreateUserRequest.java       (Input DTO)
-│   │   │           ├── repositories/
-│   │   │           │   ├── UserRepository.java          (Interface - abstraction)
-│   │   │           │   └── InMemoryUserRepository.java  (Implementation - memory)
-│   │   │           └── exceptions/
-│   │   │               └── UserNotFoundException.java   (Custom exception)
+│   │   │       ├── model/
+│   │   │       │   └── User.java                       (Entity: id (UUID), name, email)
+│   │   │       │
+│   │   │       ├── dto/
+│   │   │       │   └── CreateUserRequest.java          (Record: incoming request DTO)
+│   │   │       │
+│   │   │       ├── repositories/
+│   │   │       │   ├── UserRepository.java             (Repository interface - data access contract)
+│   │   │       │   └── InMemoryUserRepository.java     (@Repository - in-memory implementation)
+│   │   │       │
+│   │   │       └── exceptions/
+│   │   │           ├── UserNotFoundException.java      (@ResponseStatus(404) - User not found)
+│   │   │           └── EmailAlreadyExistsException.java (@ResponseStatus(409) - Email duplicate)
+|   |   |           └── ErrorResponse.java
+│   │   │           └── GlobalExceptionHandler.java
 │   │   │
 │   │   └── resources/
-│   │       └── application.properties                   (Spring configuration)
+│   │       ├── application.properties                  (server.port=9000, spring.application.name)
+│   │       ├── static/                                 (CSS, JS, images - if serving static content)
+│   │       └── templates/                              (HTML templates - if using Thymeleaf)
 │   │
 │   ├── test/
-│   │   └── java/
-│   │       └── cat/itacademy/s04/t01/userapi/
-│   │           ├── level1/
-│   │           │   └── controllers/
-│   │           │       └── HealthControllerTest.java    (Level 1 test)
-│   │           │
-│   │           └── level2 & level3/
-│   │               ├── UserControllerTest.java          (Integration tests - Level 2)
-│   │               ├── repositories/
-│   │               │   └── InMemoryUserRepositoryTest.java (Level 3 repository tests)
-│   │               └── service/
-│   │                   └── UserServiceImplTest.java     (Level 3 unit tests with Mockito)
+│   │   └── java/cat/itacademy/s04/t01/userapi/
+│   │       ├── level1/
+│   │       │   └── controllers/
+│   │       │       └── HealthControllerTest.java       (@WebMvcTest - tests /health endpoint)
+│   │       │ 
+│   │       ├── level2andLevel3/
+│   │       │   ├── controller/            
+│   │       │   │   └── UserControllerTest.java (@SpringBootTest - integration tests)
+│   │       │   ├── repositories/
+│   │       │   │   └── InMemoryUserRepositoryTest.java (Repository unit tests)
+│   │       │   └── services/
+│   │       │       └── UserServiceImplTest.java        (@ExtendWith(MockitoExtension) - TDD tests)
+│   │       │
+│   │       └── UserapiApplicationTests.java            (@SpringBootTest - context load test)
 │   │
 │   └── docs/
 │       └── screenshots/
-│           ├── bruno-results.png                        (Endpoint tests)
-│           └── test-results.png                         (Test results)
+│           ├── bruno-results.png                       (REST client test results)
+│           └── test-results.png                        (Maven test execution output)
 │
-├── target/                                              (Build folder - auto-generated)
-│   ├── userapi-0.0.1-SNAPSHOT.jar                      (Executable JAR)
+├── target/                                              (📦 Build artifacts - auto-generated)
+│   ├── classes/
+│   │   ├── application.properties
+│   │   └── cat/itacademy/s04/t01/userapi/              (.class files)
+│   ├── test-classes/
+│   │   └── cat/itacademy/s04/t01/userapi/              (Test .class files)
+│   ├── surefire-reports/                               (JUnit test reports)
+│   │   ├── *.txt                                       (Test summary files)
+│   │   └── TEST-*.xml                                  (Test XML reports)
+│   ├── userapi-0.0.1-SNAPSHOT.jar                      (📦 Executable JAR - Embedded Tomcat)
+│   ├── userapi-0.0.1-SNAPSHOT.jar.original             (Original JAR - before Spring Boot repackage)
+│   ├── mockito-agent.jar                               (Mockito agent for testing)
+│   ├── generated-sources/                              (Auto-generated sources)
+│   ├── generated-test-sources/                         (Auto-generated test sources)
+│   ├── maven-status/                                   (Build status metadata)
+│   ├── maven-archiver/                                 (Maven archiver data)
+│   └── ...                                              (Other build artifacts)
+│
+├── S04-01/                                              (🧪 REST API Collection)
+│   ├── bruno.json                                       (Bruno/Postman collection file)
+│   ├── getStatus.bru                                   (GET /health request)
+│   ├── getUser.bru                                     (GET /users/{id} request)
+│   ├── getUserByName.bru                               (GET /users?name= request)
+│   ├── getUsers.bru                                    (GET /users request)
+│   └── postUser.bru                                    (POST /users request)
+│
+├── .git/                                                (🔒 Git repository metadata)
+│   ├── config, objects, refs, logs, hooks              (Git internals)
 │   └── ...
 │
-├── pom.xml                                              (Maven dependencies)
-├── mvnw                                                 (Maven wrapper Linux/Mac)
-├── mvnw.cmd                                             (Maven wrapper Windows)
-├── README.md                                            (This file)
-└── HELP.md                                              (Additional help)
+├── .mvn/                                                (🔧 Maven Wrapper)
+│   └── wrapper/
+│       ├── maven-wrapper.jar                           (Maven executable)
+│       ├── maven-wrapper.properties                    (Maven version config)
+│       └── MavenWrapperDownloader.java                 (Maven downloader)
+│
+├── 📄 Configuration Files
+│   ├── pom.xml                                         (Maven: dependencies, plugins, build config)
+│   ├── .gitignore                                      (Git ignore rules)
+│   ├── mvnw                                            (Maven wrapper - macOS/Linux)
+│   ├── mvnw.cmd                                        (Maven wrapper - Windows)
+│   ├── README.md                                       (This file - Complete documentation)
+│   └── HELP.md                                         (Spring Boot generated help)
+│
+└── 📦 Dependencies (defined in pom.xml)
+    ├── Spring Boot Starters
+    │   ├── spring-boot-starter-web              (Web MVC + Tomcat + Jackson)
+    │   └── spring-boot-starter-test             (Testing framework)
+    ├── Testing
+    │   ├── junit-jupiter                        (JUnit 5)
+    │   ├── mockito-core                         (Mocking framework)
+    │   ├── mockito-junit-jupiter                (Mockito JUnit integration)
+    │   ├── assertj-core                         (Assertions library)
+    │   └── spring-boot-starter-test             (MockMvc, @SpringBootTest)
+    └── Development
+        ├── spring-boot-devtools                 (Hot reload)
+        └── maven-compiler-plugin                (Java compilation)
 ```
+
+### Folder Description Summary
+
+| Folder/File | Type | Purpose |
+|-------------|------|---------|
+| `src/main/java` | Source | Java application code organized by layers |
+| `src/main/resources` | Config | Application properties and static assets |
+| `src/test/java` | Tests | Unit and integration tests (JUnit, Mockito) |
+| `target/` | Build | Compiled output and executable JAR |
+| `S04-01/` | Collection | REST API test requests (Bruno/Postman) |
+| `.mvn/` | Config | Maven wrapper configuration |
+| `pom.xml` | Config | Maven dependencies and build settings |
+| `.git/` | VCS | Git repository history and metadata |
 
 ### Level explanation
 
 | Level | Folder | Topic | Goal |
 |-------|--------|-------|------|
 | **Level 1** | `level1/` | Health Check | Verify API works and returns structured JSON |
-| **Level 2** | `level2/level3/` | Basic CRUD | Manage users with GET/POST/GETBYID/FILTER endpoints |
-| **Level 3** | `level2/level3/` | Layered architecture | Refactor with Repository Pattern and Dependency Injection |
+| **Level 2** | `level2andLevel3/` | Basic CRUD | Manage users with GET/POST/GETBYID/FILTER endpoints |
+| **Level 3** | `level2andLevel3/` | Layered architecture with Service | Refactor with Repository Pattern, Service Layer and Dependency Injection |
 
 ---
 
@@ -724,4 +797,3 @@ Contributions are welcome! For major changes:
 **Developer**: Adriana Elías  
 **Institution**: IT Academy - Barcelona Activa  
 **Level**: Apprentice / Junior Developer  
-
