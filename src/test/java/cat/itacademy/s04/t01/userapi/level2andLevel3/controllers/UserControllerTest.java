@@ -1,4 +1,4 @@
-package cat.itacademy.s04.t01.userapi.level2andLevel3;
+package cat.itacademy.s04.t01.userapi.level2andLevel3.controllers;
 
 import cat.itacademy.s04.t01.userapi.level2andLevel3.dto.CreateUserRequest;
 import cat.itacademy.s04.t01.userapi.level2andLevel3.model.User;
