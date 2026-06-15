@@ -1,9 +1,11 @@
 package cat.itacademy.s04.t01.userapi.level2andLevel3.repositories;
 
 import cat.itacademy.s04.t01.userapi.level2andLevel3.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class InMemoryUserRepository implements UserRepository{
 
     private List<User> users = new ArrayList<>();
