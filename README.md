@@ -4,6 +4,27 @@
 
 ---
 
+## 🎉 Project Status
+
+| Status | Details |
+|--------|---------|
+| **Completion** | ✅ 100% - All 3 Levels Implemented |
+| **Language** | 🇬🇧 English (Fully Translated) |
+| **API Endpoints** | ✅ All endpoints functional with Service Layer |
+| **Tests** | ✅ Integration & Unit Tests (with Mockito & TDD) |
+| **Architecture** | ✅ Layered (Controller → Service → Repository) |
+| **Documentation** | ✅ Complete with diagrams and examples |
+| **Port** | 9000 |
+| **Build** | ✅ Maven clean package |
+| **Ready to Deploy** | ✅ Yes - Production Ready (Educational) |
+
+### Recent Implementations:
+- ✅ **Service Layer**: UserService interface and UserServiceImpl (TDD approach)
+- ✅ **Unit Testing**: Mockito-based tests for service layer
+- ✅ **Dependency Injection**: Spring @Service and @Repository annotations
+
+---
+
 ## 📌 Exercise Statement
 
 This exercise is your first contact with **Spring Boot** and **REST API** development. The goal is to build a minimal yet functional API that allows receiving and returning data in JSON format, using HTTP methods and applying good practices from the beginning.
@@ -44,8 +65,11 @@ This exercise is your first contact with **Spring Boot** and **REST API** develo
 - ✅ **Repository Pattern**: `UserRepository` interface with `InMemoryUserRepository` implementation
 - ✅ Clear separation of concerns
 - ✅ Repository unit tests with assertions
+- ✅ **Service Layer**: `UserService` interface with `UserServiceImpl` implementation
+- ✅ Business logic centralized in the service layer
+- ✅ Unit tests using Mockito with TDD approach
+- ✅ Dependency injection with Spring (@Service, @Repository)
 - ✅ Structure ready for future database integration
-- ✅ Dependency injection with Spring
 
 ---
 
@@ -331,6 +355,12 @@ HTTP REQUEST (GET, POST, etc.)
 - ✅ **AssertJ**: Fluent and readable assertions
 - ✅ **Coverage**: Verify tested code is sufficient
 
+#### 8. **Service Layer Implementation (TDD Approach)**
+- ✅ **Centralized Business Logic**: UserService handles all business rules
+- ✅ **Dependency Inversion**: Controller depends on service interface, not implementation
+- ✅ **Test-Driven Development**: Unit tests with Mockito define behavior before implementation
+- ✅ **Easier to Mock**: Service dependencies can be easily mocked for isolated testing
+
 ---
 
 ## 📂 Project Structure
@@ -348,18 +378,21 @@ userapi/
 │   │   │       │   └── controllers/
 │   │   │       │       └── HealthController.java        (Endpoint /health)
 │   │   │       │
-│   │   │       └── level2 & level3/ (LEVEL 2 & 3: User CRUD)
-│   │   │               ├── controller/
-│   │   │               │   └── UserController.java      (Endpoints /users)
-│   │   │               ├── model/
-│   │   │               │   └── User.java                (User entity)
-│   │   │               ├── dto/
-│   │   │               │   └── CreateUserRequest.java   (Input DTO)
-│   │   │               ├── repositories/
-│   │   │               │   ├── UserRepository.java      (Interface - abstraction)
-│   │   │               │   └── InMemoryUserRepository.java (Implementation - memory)
-│   │   │               └── exceptions/
-│   │   │                   └── UserNotFoundException.java (Custom exception)
+│   │   │       └── level2 & level3/                     (LEVEL 2 & 3: User CRUD with Service Layer)
+│   │   │           ├── controller/
+│   │   │           │   └── UserController.java          (Endpoints /users - now uses Service)
+│   │   │           ├── service/
+│   │   │           │   ├── UserService.java             (Service interface - Level 3)
+│   │   │           │   └── UserServiceImpl.java          (Service implementation - Level 3)
+│   │   │           ├── model/
+│   │   │           │   └── User.java                    (User entity)
+│   │   │           ├── dto/
+│   │   │           │   └── CreateUserRequest.java       (Input DTO)
+│   │   │           ├── repositories/
+│   │   │           │   ├── UserRepository.java          (Interface - abstraction)
+│   │   │           │   └── InMemoryUserRepository.java  (Implementation - memory)
+│   │   │           └── exceptions/
+│   │   │               └── UserNotFoundException.java   (Custom exception)
 │   │   │
 │   │   └── resources/
 │   │       └── application.properties                   (Spring configuration)
@@ -372,9 +405,11 @@ userapi/
 │   │           │       └── HealthControllerTest.java    (Level 1 test)
 │   │           │
 │   │           └── level2 & level3/
-│   │               ├── UserControllerTest.java          (Integration tests)
-│   │               └── repositories/
-│   │                   └── InMemoryUserRepositoryTest.java (Level 3 tests)
+│   │               ├── UserControllerTest.java          (Integration tests - Level 2)
+│   │               ├── repositories/
+│   │               │   └── InMemoryUserRepositoryTest.java (Level 3 repository tests)
+│   │               └── service/
+│   │                   └── UserServiceImplTest.java     (Level 3 unit tests with Mockito)
 │   │
 │   └── docs/
 │       └── screenshots/
@@ -408,8 +443,9 @@ userapi/
 
 ```
 ✅ HealthControllerTest              → Verifies GET /health
-✅ UserControllerTest                → CRUD integration tests
-✅ InMemoryUserRepositoryTest       → Repository unit tests
+✅ UserControllerTest                → Integration tests for CRUD endpoints
+✅ InMemoryUserRepositoryTest       → Unit tests for repository pattern
+✅ UserServiceImplTest              → Unit tests for business logic (Mockito + TDD)
 ```
 
 ### Running tests with Maven
@@ -584,8 +620,7 @@ Educational purposes - Barcelona Activa
 
 ## 👨‍💻 Author
 
-**Developer**: Adriana Elías  
-**Creation Date**: June 2026  
+**Creation Date**: June 2026
 **Institution**: IT Academy - Barcelona Activa  
 **Level**: Apprentice / Junior Developer
 
@@ -691,5 +726,10 @@ Contributions are welcome! For major changes:
 
 **Last Update**: June 15, 2026  
 **Version**: 1.0.0-SNAPSHOT  
-**Status**: ✅ In production (educational)
+**Status**: ✅ Completed and Tested (Production Ready - Educational)  
+**Language**: English 🇬🇧  
+**Documentation**: Complete with diagrams, examples, and FAQ  
+**Developer**: Adriana Elías  
+**Institution**: IT Academy - Barcelona Activa  
+**Level**: Apprentice / Junior Developer  
 
